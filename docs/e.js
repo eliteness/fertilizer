@@ -596,7 +596,7 @@ async function redeem() {
 	txr = await txh.wait();
 	notice(`
 		<h2>F* Tokens Redeemed</h2>
-		<br>${T_X.symbol} & ${T_X.symbol} have been credited to your wallet!
+		<br>${T_X.symbol} & ${T_Y.symbol} have been credited to your wallet!
 		<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 	`);
 	gubs();paintBook();
