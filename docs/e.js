@@ -306,7 +306,7 @@ async function arf(){
 async function gubs() {
 	gubs_tx = new ethers.Contract(T_X.address, ["function balanceOf(address) public view returns(uint)"], signer);
 	gubs_ty = new ethers.Contract(T_Y.address, ["function balanceOf(address) public view returns(uint)"], signer);
-	gubs_tf = new ethers.Contract(VAULT, ["function balanceOf(address) public view returns(uint)"], signer);
+	gubs_tf = new ethers.Contract(FTOKEN, ["function balanceOf(address) public view returns(uint)"], signer);
 	bal = await Promise.all([
 		gubs_tx.balanceOf(window.ethereum.selectedAddress),
 		gubs_ty.balanceOf(window.ethereum.selectedAddress),
@@ -314,16 +314,16 @@ async function gubs() {
 	]);
 	_ub_x = (bal[0]/10**STATE.ts.decimals).toFixed(STATE.ts.decimals);
 	_ub_y = (bal[1]/10**STATE.tb.decimals).toFixed(STATE.tb.decimals);
-	_ub_f = (bal[1]/10**18).toFixed(18);
+	_ub_f = (bal[2]/10**18).toFixed(18);
 
 
 	$("mint-balance-x").innerHTML = `<span onclick='$("mint-inp-x").value=${_ub_x};quoteMint()'>Balance: `+ _ub_x +" "+ T_X.symbol+"</span>";
 	$("mint-balance-y").innerHTML = `<span onclick='$("mint-inp-y").value=${_ub_y};quoteMint()'>Balance: `+ _ub_y +" "+ T_Y.symbol+"</span>";
-	$("burn-balance-f").innerHTML = `<span onclick='$("burn-inp-f").value=${_ub_f};quoteBurn()'>Balance: `+ _ub_f +" "+ VAULT_TICKER+"</span>";
+	$("burn-balance-f").innerHTML = `<span onclick='$("burn-inp-f").value=${_ub_f};quoteBurn()'>Balance: `+ _ub_f +" "+ FTOKEN_TICKER+"</span>";
 
 	$("burn-balance-x").innerHTML = `<span onclick=''>Balance: `+ _ub_x +" "+ T_X.symbol+"</span>";
 	$("burn-balance-y").innerHTML = `<span onclick=''>Balance: `+ _ub_y +" "+ T_Y.symbol+"</span>";
-	$("mint-balance-f").innerHTML = `<span onclick='$'>Balance: `+ _ub_f +" "+ VAULT_TICKER+"</span>";
+	$("mint-balance-f").innerHTML = `<span onclick='$'>Balance: `+ _ub_f +" "+ FTOKEN_TICKER+"</span>";
 	////////
 	////////
 	return;
@@ -406,6 +406,8 @@ async function mint() {
 
 	let _aamt = $("mint-inp-x").value;
 	let _bamt = $("mint-inp-y").value;
+	if(_aamt=="") {_aamt = 0;}
+	if(_bamt=="") {_bamt = 0;}
 	if(!isFinite(_aamt)) { notice(`<h3>Invalid amount of ${T_X.symbol} input!</h3>`); return;}	_aamt=Number(_aamt);
 	if(!isFinite(_bamt)) { notice(`<h3>Invalid amount of ${T_Y.symbol} input!</h3>`); return;}	_bamt=Number(_bamt);
 	_T_X = new ethers.Contract(T_X.address, ["function balanceOf(address) public view returns(uint256)","function allowance(address,address) public view returns(uint256)","function approve(address,uint256)"], signer);
@@ -493,8 +495,8 @@ async function mint() {
 			<img style="vertical-align: bottom;" height="64px" src="${T_X.logo}">
 			<img style="vertical-align: bottom;" height="64px" src="${T_Y.logo}">
 		</div>
-		<br>Minimum ${VAULT_TICKER} Received:
-		<br>((BigInt(Math.floor( ( _aamt*10**T_X.decimals + _bamt*10**T_Y.decimals) * SLIPBPS/1e4 )))/1e18).toFixed(18);
+		<br>Minimum ${FTOKEN_TICKER} Received:
+		<br>${((BigInt(Math.floor( ( _aamt*10**T_X.decimals + _bamt*10**T_Y.decimals) * SLIPBPS/1e4 )))/1e18).toFixed(18)}
 		<br>
 		<br><b>Awaiting confirmation from the network . . .</b>
 		<br<i>Please wait.</i>
@@ -517,8 +519,8 @@ async function mint() {
 
 async function redeem() {
 
-	let _aamt = $("mint-inp-f").value;
-	if(!isFinite(_aamt)) { notice(`<h3>Invalid amount of ${VAULT_TICKER} input!</h3>`); return;}	_aamt=Number(_aamt);
+	let _aamt = $("burn-inp-f").value;
+	if(!isFinite(_aamt)) { notice(`<h3>Invalid amount of ${FTOKEN_TICKER} input!</h3>`); return;}	_aamt=Number(_aamt);
 	_T_F = new ethers.Contract(FTOKEN, ["function balanceOf(address) public view returns(uint256)","function allowance(address,address) public view returns(uint256)","function approve(address,uint256)"], signer);
 	_FV = new ethers.Contract(FVAULT, ["function deposit(uint,uint,uint)","function withdraw(uint,uint,uint)"],signer);
 
@@ -533,7 +535,7 @@ async function redeem() {
 		_T_F.allowance(window.ethereum.selectedAddress, FVAULT)
 	]);
 
-	console.log("onp-create",_aamt,_bamt,_usernums);
+	console.log("onp-create",_aamt,_usernums);
 
 	if( _usernums[0] < (_aamt*1e18) ) {
 		notice(`
@@ -593,7 +595,7 @@ async function redeem() {
 	`);
 	txr = await txh.wait();
 	notice(`
-		<h2>F* Tokens Redeemed
+		<h2>F* Tokens Redeemed</h2>
 		<br>${T_X.symbol} & ${T_X.symbol} have been credited to your wallet!
 		<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 	`);
