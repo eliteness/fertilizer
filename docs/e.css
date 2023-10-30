@@ -422,7 +422,13 @@ textarea:focus, input:focus {
 	#bal_tvl, #bal_apr{
 		font-size:revert;
 	}
-
+	.nft-amtl-desc {
+		font-family: light_italic;
+		font-size: 2em;
+	}
+	.nft-amtl-desc b {
+		font-family: regular_italic;
+	}
 }
 
 
