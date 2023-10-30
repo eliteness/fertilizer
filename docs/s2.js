@@ -326,7 +326,7 @@ async function withdraw(ismax) {
 
 async function claim() {
 	fa = new ethers.Contract(FARM, FARABI, signer);
-	voter = new ethers.Contract(VOTER, ["function claimRewards(address[],address[][])", signer);
+	voter = new ethers.Contract(VOTER, ["function claimRewards(address[],address[][])"], signer);
 	notice(`
 		<h3>Claiming Rewards!</h3>
 		<img style='height:20px;position:relative;top:4px' src="${TEARNIMG[0]}">
