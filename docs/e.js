@@ -479,8 +479,7 @@ async function mint() {
 	notice(`
 		<h2>Minting F* tokens</h3>
 		<h3>Creating an EⅢ Position</h3>
-		<br>
-		<br><img style="vertical-align: bottom;" height="20px" src="${T_X.logo}"> Asks: ${_aamt} ${T_X.symbol}
+		<img style="vertical-align: bottom;" height="20px" src="${T_X.logo}"> Asks: ${_aamt} ${T_X.symbol}
 		<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
 	`);
 
