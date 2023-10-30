@@ -195,12 +195,13 @@ async function gubs() {
 	bal = await Promise.all([
 		lp.balanceOf(window.ethereum.selectedAddress),
 		fa.balanceOf(window.ethereum.selectedAddress),
-		fa.earned(window.ethereum.selectedAddress,TEARNED[0]),
-		fa.earnings(window.ethereum.selectedAddress,TEARNED[0]),
+		fa.earned(TEARNED[0],window.ethereum.selectedAddress),
+		fa.earnings(TEARNED[0],window.ethereum.selectedAddress),
 		fa.tvl(),
 		fa.aprs(),
 		//fa_o.balanceOf(window.ethereum.selectedAddress)
 	]);
+	console.log("gubs.bal_", bal)
 	$("bal_lp").innerHTML = (bal[0]/1e18).toFixed(8);
 	$("bal_fa").innerHTML = (bal[1]/1e18).toFixed(8);
 	$("bal_r0").innerHTML = (bal[2]/1e18).toFixed(8);
@@ -325,13 +326,14 @@ async function withdraw(ismax) {
 
 async function claim() {
 	fa = new ethers.Contract(FARM, FARABI, signer);
+	voter = new ethers.Contract(VOTER, ["function claimRewards(address[],address[][])", signer);
 	notice(`
 		<h3>Claiming Rewards!</h3>
 		<img style='height:20px;position:relative;top:4px' src="${TEARNIMG[0]}">
 		<u>${ $("bal_r0").innerHTML } ${TEARNSYM.join(" + ")}</u><br><br>
 		<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
 	`);
-	let _tr = await fa.getReward(TEARNED[0]);
+	let _tr = await voter.getRewards([FARM],[[TEARNED[0]]]);
 	console.log(_tr);
 	notice(`
 		<h3>Rewards are on their way!</h3>
