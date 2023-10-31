@@ -195,13 +195,13 @@ async function gubs() {
 	bal = await Promise.all([
 		lp.balanceOf(window.ethereum.selectedAddress),
 		fa.balanceOf(window.ethereum.selectedAddress),
-		fa.earned(TEARNED[0],window.ethereum.selectedAddress),
-		fa.earnings(TEARNED[0],window.ethereum.selectedAddress),
+		fa.earned(TEARNED[0], window.ethereum.selectedAddress),
+		fa.earnings(window.ethereum.selectedAddress, TEARNED[0]),
 		fa.tvl(),
 		fa.aprs(),
 		//fa_o.balanceOf(window.ethereum.selectedAddress)
 	]);
-	console.log("gubs.bal_", bal)
+	console.log("gubs.bal_", bal);
 	$("bal_lp").innerHTML = (bal[0]/1e18).toFixed(8);
 	$("bal_fa").innerHTML = (bal[1]/1e18).toFixed(8);
 	$("bal_r0").innerHTML = (bal[2]/1e18).toFixed(8);
