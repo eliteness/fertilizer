@@ -333,7 +333,7 @@ async function claim() {
 		<u>${ $("bal_r0").innerHTML } ${TEARNSYM.join(" + ")}</u><br><br>
 		<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
 	`);
-	let _tr = await voter.getRewards([FARM],[[TEARNED[0]]]);
+	let _tr = await voter.claimRewards([FARM],[[TEARNED[0]]]);
 	console.log(_tr);
 	notice(`
 		<h3>Rewards are on their way!</h3>
