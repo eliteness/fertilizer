@@ -167,7 +167,7 @@ button.btn-max {
 	display: grid;
 	grid-template-columns: auto auto;
 	text-align: center;
-	font-size: 1.5em;
+	font-size: 1.25em;
 }
 
 #bal_tvl, #bal_apr{
@@ -420,7 +420,7 @@ textarea:focus, input:focus {
 	}
 
 	#bal_tvl, #bal_apr{
-		font-size:revert;
+		font-size:;
 	}
 	.nft-amtl-desc {
 		font-family: light_italic;

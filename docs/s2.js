@@ -1,6 +1,6 @@
 function $(_) {return document.getElementById(_);}
-let provider= {};
-let signer= {};
+provider= {};
+signer= {};
 window.addEventListener('load',async function() {
 	console.log("waitin for 3 secs..");
 	$("cw_m").innerHTML = "Connecting.. Please wait."
@@ -66,8 +66,7 @@ async function basetrip()
 
 
 /*
-function fornum(n,d)
-{
+function fornum(n,d) {
 	_n=(Number(n)/10**Number(d));
 	n_=_n;
 	if(_n>1e18){n_=(_n/1e18).toFixed(2)+" Qt."}
@@ -80,29 +79,26 @@ function fornum(n,d)
 	return(n_);
 }
 */
-function fornum(n,d)
-{
+function fornum(n,d) {
 	_n=(Number(n)/10**Number(d));
 	n_=_n;
-	if(_n>1e18){n_=(_n/1e18).toFixed(3)+"Qt"}
-	else if(_n>1e15){n_=(_n/1e15).toFixed(3)+"Qd"}
-	else if(_n>1e12){n_=(_n/1e12).toFixed(3)+"T"}
-	else if(_n>1e9){n_=(_n/1e9).toFixed(3)+"B"}
-	else if(_n>1e6){n_=(_n/1e6).toFixed(3)+"M"}
-	else if(_n>1e3){n_=(_n/1e3).toFixed(3)+"K"}
-	else if(_n>1e1){n_=(_n/1e0).toFixed(3)+""}
-	else if(_n>1e0){n_=(_n/1e0).toFixed(5)+""}
-	else if(_n>0.0){n_=(_n/1e0).toFixed(8)+""}
+	if(_n>1e18){n_=(_n/1e18).toFixed(2)+"Qt"}
+	else if(_n>1e15){n_=(_n/1e15).toFixed(2)+"Qd"}
+	else if(_n>1e12){n_=(_n/1e12).toFixed(2)+"T"}
+	else if(_n>1e9){n_=(_n/1e9).toFixed(2)+"B"}
+	else if(_n>1e6){n_=(_n/1e6).toFixed(2)+"M"}
+	else if(_n>1e3){n_=(_n/1e0).toFixed(2)+""}
+	else if(_n>1e1){n_=(_n/1e0).toFixed(4)+""}
+	else if(_n>1e0){n_=(_n/1e0).toFixed(6)+""}
+	else if(_n>0.0){n_=(_n/1e0).toFixed(6)+""}
 	return(n_);
 }
 
-async function cw()
-{
+async function cw() {
 	let cs = await cw2(); cs?console.log("Good to Transact"):cw2();
 	cw2();
 }
-async function cw2()
-{
+async function cw2() {
 	if(!(window.ethereum)){$("cw_m").innerHTML="Metamask not detected! Trying a refresh";console.log("Metamask not found!");window.location.reload();return(0)}
 	if(!(Number(window.ethereum.chainId)==CHAINID)){$("cw_m").innerHTML="Wrong network detected! Please switch to chain ID", CHAINID, "and refresh this page.";return(0)}
 	if(typeof provider == "undefined"){$("cw_m").innerHTML="Provider not detected! Trying a refresh";console.log("Provider not found!");window.location.reload();return(0)}
@@ -158,8 +154,7 @@ async function cw2()
 	//arf();
 	return(1);
 }
-function fornum2(n,d)
-{
+function fornum2(n,d) {
 	_n=(Number(n)/10**Number(d));
 	n_=_n;
 	if(_n>1e18){n_=(_n/1e18).toFixed(2)+" Quintillion"}
