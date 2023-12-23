@@ -479,7 +479,7 @@ async function mint() {
 			<img style="vertical-align: bottom;" height="64px" src="${T_Y.logo}">
 		</div>
 		<br>Minimum ${FTOKEN_TICKER} Received:
-		<br>${( (_aamt*10**T_X.decimals + _bamt*10**T_Y.decimals) * SLIPBPS / 1e4 / 1e18).toFixed(18)}
+		<br>${( (_aamt*10**T_X.decimals + _bamt*10**T_Y.decimals) * (10**(18-Math.floor(T_X.decimals/2+T_Y.decimals/2))) * SLIPBPS / 1e4 / 1e18).toFixed(18)}
 		<br>
 		<br><b>Awaiting confirmation from the network . . .</b>
 		<br<i>Please wait.</i>

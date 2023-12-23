@@ -45,6 +45,10 @@ small {
 	font-family: light
 }
 
+.partnership-icon-main {
+	height:24px;
+}
+
 p {
 	font-family: sans-serif;
 	font-size: 1em;
@@ -366,7 +370,15 @@ textarea:focus, input:focus {
 	padding: 8px;
 }
 
+.h2-c2a {
+	font-size: 1.25em;
+}
+
 @media(min-width:641px) {
+
+	.partnership-icon-main {
+		height:48px;
+	}
 
 	.mechanism {
 		width: min(40%,400px);
@@ -744,6 +756,24 @@ img.bigthumb {
 	display: ;
 }
 
+
+.infobox-light {
+	margin:5%;
+	font-family:light;
+}
+
+.infobox-light-highlight {
+	background:rgba(0,0,0,0.2);
+	font-family: regular
+}
+.infobox-light-link {
+	color:rgba(0,255,255);
+	background:rgba(0,0,0,0.2);
+	font-family: regular;
+	text-decoration:none;
+}
+
+
 @media(min-width:641px) {
 	.topnav {
 		display:grid;
@@ -752,5 +782,9 @@ img.bigthumb {
 
 	.main-2cards {
 		display: flex;
+	}
+
+	.infobox-light {
+		font-size:1.25em;
 	}
 }
