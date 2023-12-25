@@ -41,7 +41,6 @@ small {
 	text-align: center;
 }
 .partnership span {
-	padding: 10px;
 	font-family: light
 }
 
@@ -162,16 +161,22 @@ button.btn-max {
 .nft-amtl-desc {
 	font-family: light;
 	font-size: 1em;
+	margin: 0 25px;
 }
 .nft-amtl-desc b {
 	font-family: regular;
 }
 
 .earn-stats {
-	display: grid;
 	grid-template-columns: auto auto;
 	text-align: center;
 	font-size: 1.25em;
+    padding: 10px;
+    max-width: fit-content;
+    margin: auto auto;
+    border: 1px solid white;
+    border-radius: 15px;
+    margin-bottom: 25px;
 }
 
 #bal_tvl, #bal_apr{
@@ -437,6 +442,7 @@ textarea:focus, input:focus {
 	.nft-amtl-desc {
 		font-family: light_italic;
 		font-size: 2em;
+		display: inline-block;
 	}
 	.nft-amtl-desc b {
 		font-family: regular_italic;
@@ -753,13 +759,17 @@ img.bigthumb {
 
 
 .main-2cards {
-	display: ;
+	max-width:1000px;
+	margin:auto auto;
 }
 
 
 .infobox-light {
-	margin:5%;
+    margin: 25px auto;
+	max-width:1000px;
 	font-family:light;
+	font-family: light;
+    padding: 0px 50px;
 }
 
 .infobox-light-highlight {
