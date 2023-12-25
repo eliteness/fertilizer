@@ -8,7 +8,52 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="https://ftm.guru/icons/e3.png"/>
 	<link rel="stylesheet" href="./e.css"/>
-<head>
+
+    <!-- Tab style -->
+    <style>
+        .tab {
+
+			justify-content: center;
+    display: flex;
+    max-width: 1000px;
+    margin: auto auto;
+    padding: 0 25px;	
+        }
+
+        .tab button {
+			background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    background-color: #090333;
+	width: 50%;
+    border-radius: 0;
+    border: 1px solid #092e6d;
+    border-bottom: 0;
+        }
+
+        .tab button:hover {
+            background-color: #090333;
+        }
+
+        .tab button.active {
+            background-color: #122e5f;
+        }
+
+        .tabcontent {
+            display: none;
+            border-top: none;
+			background-color: #001337;
+			border: 1px solid #092e6d;
+			padding-bottom:50px;
+			max-width: 1000px;
+    margin: auto auto;
+        }
+    </style>
+</head>
 <body>
 
 	<div id="note" class="overlay">
@@ -38,291 +83,286 @@
 
 
 
-
-
 	<div class="partnership">
-		<h1 id="a-addlp"><img class="partnership-icon-main" src="https://ftm.guru/icons/1f1eb.svg"><span>Fertilizer</span></h1>
+		<h1 id="a-addlp"><img class="partnership-icon-main" src="https://ftm.guru/icons/1f1eb.svg"><span>&nbsp;Fertilizer</span></h1>
 		<h2>Automated Liquidity Shape Management for Extreme Capital Efficiency</h2>
-	</div>
-	<br>
 
-	<div class="infobox-light">
-		<span class="infobox-light-highlight">Fertilizer</span> is a novel Automated Liquidity Management Protocol that simplifies your Concentrated Liquidity positions. It creates Liquidity Positions on the <a target="_blank" href="https://eliteness.network/e3" class="infobox-light-link">E3 DEX</a> and keeps your LP "<span class="infobox-light-highlight">In-Range</span>" all the time!
-		<br>
-		<br>
-		Start by Adding Liquidity to get <span class="infobox-light-highlight">F-ftm-2-1</span> (F*) LP tokens. You can deposit any amounts in any ratio, or use one or both tokens! Redeem your LPs at any time to get back the original tokens and with the autcompounded accrued bonuses from our Fees!
-	</div>
-
-	<br>
-	<br>
-	<br>
-
-
-	<div class="main-2cards">
-
-		<div class="mechanism">
-			<h2 class="h2-c2a">Mint F* Tokens</h2>
-			<div align="center">Add your tokens to Liquidity Pool</div>
-			<div style="display:none;font-family:light_italic" align="center" id="mint-recommend">Choose any amounts or ratio!</div>
-			<div class="input-amount">
-				<br>
-				<div class="input-amount-els">
-					<div onclick="pairSelectionMenu()">
-						<img class="bigthumb" id="mint-logo-x" src="https://ftm.guru/icons/e3.png"/>
-					</div>
-					<div class="amount-area">
-						<div class="prefill-num">
-							<span id="mint-balance-x">0.000000 available</span>
-						</div>
-						<div class="amount-sold" id="">
-							<input value="" placeholder="Amount" id="mint-inp-x">
-						</div>
-					</div>
-				</div>
-  				<div class="arrow-content" align="center">
-  					<br>
-  					<i>and</i>
-  					<br>
-  					<br>
-  				</div>
-				<div class="input-amount-els">
-					<div onclick="pairSelectionMenu()">
-						<img class="bigthumb" id="mint-logo-y" src="https://ftm.guru/icons/e3.png"/>
-					</div>
-					<div class="amount-area">
-						<div class="prefill-num">
-							<span id="mint-balance-y">0.000000 available</span>
-						</div>
-						<div class="amount-bought" id="">
-							<input value="" placeholder="Amount" id="mint-inp-y">
-						</div>
-					</div>
-				</div>
-				<div style="display:none">
-  				<div class="arrow-content" align="center">
-  					<br>
-  					<br>
-  					<br>
-  					<br>
-  					<i>You will Receive</i>
-  					<br>
-  					<br>
-  				</div>
-				<div class="input-amount-els">
-					<div onclick="pairSelectionMenu()">
-						<img class="bigthumb" id="mint-logo-f" src="https://ftm.guru/icons/e3.png"/>
-					</div>
-					<div class="amount-area">
-						<div class="prefill-num">
-							<span id="mint-balance-f">0.000000 available</span>
-						</div>
-						<div class="amount-bought" id="">
-							<input value="" placeholder="Amount" id="mint-out-f">
-						</div>
-					</div>
-				</div>
-				-->
-				</div>
+		<div class="earn-stats">
+			<div class="nft-amtl-desc">
+				<span>$</span><span style="font-family: light_italic;" id="bal_tvl">???.???</span>
+				<br><b>TVL</b>
 			</div>
-			<div style="margin-top: -25px;" align="center">
-				<button class="submit equal-gradient" onclick="mint()"><span id="mint-btn">Mint</span></button>
-				<br><br>
-				<span style="font-family:light_italic">Minting Fees: 0.01%</span>
-				<br><br>
+			<div class="nft-amtl-desc">
+				<span style="font-family: light_italic;" id="bal_apr">???.???</span><span>%</span>
+				<br><b>APR</b>
 			</div>
 		</div>
 
-
-		<div class="mechanism">
-			<h2 class="h2-c2a">Redeem F* Tokens</h2>
-			<div align="center">Withdraw your F* Liquidity Shares</div>
+		    <!-- Tab links -->
+			<div class="tab">
+				<button class="tablinks" onclick="openTab(event, 'MintRedeem')">Mint/Redeem</button>
+				<button class="tablinks" onclick="openTab(event, 'StakeUnstake')">Earn $EQUAL</button>
+			</div>
+	</div>
+	 <!-- Mint/Redeem content -->
+	 <div id="MintRedeem" class="tabcontent">
+		<div class="infobox-light">
+			<span class="infobox-light-highlight">Fertilizer</span> is a novel Automated Liquidity Management Protocol that simplifies your Concentrated Liquidity positions. It creates Liquidity Positions on the <a target="_blank" href="https://eliteness.network/e3" class="infobox-light-link">E3 DEX</a> and keeps your LP "<span class="infobox-light-highlight">In-Range</span>" all the time!
 			<br>
-			<div class="input-amount">
-				<br>
-				<div class="input-amount-els">
-					<div onclick="pairSelectionMenu()">
-						<img class="bigthumb" id="burn-logo-f" src="https://ftm.guru/icons/e3.png"/>
-					</div>
-					<div class="amount-area">
-						<div class="prefill-num">
-							<span id="burn-balance-f">0.000000 available</span>
-						</div>
-						<div class="amount-sold" id="">
-							<input value="" placeholder="Amount" id="burn-inp-f">
-						</div>
-					</div>
-				</div>
-				<div style="display:none">
-  				<div class="arrow-content" align="center">
-  					<br>
-  					<br>
-  					<br>
-  					<br>
-  					<i>You will Receive</i>
-  					<br>
-  					<br>
-  				</div>
-				<div class="input-amount-els">
-					<div onclick="pairSelectionMenu()">
-						<img class="bigthumb" id="burn-logo-x" src="https://ftm.guru/icons/e3.png"/>
-					</div>
-					<div class="amount-area">
-						<div class="prefill-num">
-							<span id="burn-balance-x">0.000000 available</span>
-						</div>
-						<div class="amount-bought" id="">
-							<input value="" placeholder="Amount" id="burn-out-x">
-						</div>
-					</div>
-				</div>
-  				<div class="arrow-content" align="center">
-  					<br>
-  					<i>and</i>
-  					<br>
-  					<br>
-  				</div>
-				<div class="input-amount-els">
-					<div onclick="pairSelectionMenu()">
-						<img class="bigthumb" id="burn-logo-y" src="https://ftm.guru/icons/e3.png"/>
-					</div>
-					<div class="amount-area">
-						<div class="prefill-num">
-							<span id="burn-balance-y">0.000000 available</span>
-						</div>
-						<div class="amount-bought" id="">
-							<input value="" placeholder="Amount" id="burn-out-y">
-						</div>
-					</div>
-				</div>
-				</div>
-			</div>
-			<div style="margin-top: -25px;" align="center">
-				<button class="submit equal-gradient" onclick="redeem()"><span id="mint-btn">Redeem</span></button>
-				<br><br>
-				<span style="font-family:light_italic">Redeeming Fees: 0.01%</span>
-				<br><br>
-			</div>
+			<br>	
+			Start by Adding Liquidity to get <span class="infobox-light-highlight">F-ftm-2-1</span> (F*) LP tokens. You can deposit any amounts in any ratio, or use one or both tokens! Redeem your LPs at any time to get back the original tokens and with the autcompounded accrued bonuses from our Fees!
 		</div>
-
-	</div>
-
-	<br>
-	<br>
-
-	<div class="infobox-light">
-		Fertilizer's unique approach to E3 enables us to Maximize Capital Efficiency, making the best use of each and every single $ in the pool. In turn, this well-shaped Liquidity on E3 generates Trade Fees round the clock to benefit our Liquidity Providers with Best Yields.
-		<br>
-		<br>
-		To further enhance our model, it plugs into <a target="_blank" href="https://equalizer.exchange" class="infobox-light-link">Equalizer</a><span class="infobox-light-highlight">'s Flywheel</span> to Boost the Yields of our LPs. All the generated trade fees are <a target="_blank" href="https://equalizer.exchange/vote" class="infobox-light-link">Bribed</a><span class="infobox-light-highlight"> to veEQUAL</span> voters in exchange of greater EQUAL emissions as Liquidity Rewards.
-		<br>
-		<br>
-		To enjoy these, stake your F* LP tokens right 👇below!
-	</div>
-
-	<div class="partnership">
-		<h1><span>Stake_ F* LPs</span></h1>
-		<h2>Stake Your F* LP tokens to start Earning EQUAL</h2>
-		<br>
-	</div>
-
-
-	<div class="mechanism">
-		<div class="amount">
-			<br>
-			<!--
-			<p style="">
-				<br>
-				<span id="nft-bal" class="equal-gradient" style="border-radius: 100px;padding: 5px;margin: 5px;position: relative;bottom: 5px;">78,123,456 elCHR</span>
-				<br>
-				<span style="font-family: light;">Available Balance</span>
-			</p>
-			-->
-		</div>
-		<div class="input-amount">
-			<br>
-			<div class="input-amount-els">
-				<div>
-					<img class="bigthumb" src="https://ftm.guru/icons/e3.png" style="border-radius:25%"/>
-					<img class="bigthumb_sub" src="./img/lock.svg" style="opacity: 0;">
-				</div>
-				<div class="nft-amt-nums">
-					<div class="nft-amtl-desc">
-						Stake <b>F* LP</b>
-					</div>
-					<input class="light-in in-box" placeholder="Enter Amount" style="margin: 0;" id="in_d">
-					<!--<button class="btn-max" onclick='$("in_d").value=$("bal_lp").textContent'>Max</button>-->
-					<span style="font-family: light_italic;">Available: </span>
-					<span style="font-family:" id="bal_lp">??????</span>
-				</div>
-			</div>
-			<div style="margin-top: -25px;" align="center">
-				<button class="submit equal-gradient" onclick="deposit(false)"><span id="claim-offer">Stake F*</span></button>
-				<button class="submit equal-gradient btn-max" onclick="deposit(true)"><span id="claim-offer">Deposit Max</span></button>
-			</div>
-			<span class="nft-amtl" id="nft-tl"></span>
-			<br>
-			<br>
-			<div class="input-amount-els">
-				<div>
-					<img class="bigthumb" src="./img/bank.svg"/>
-					<img class="bigthumb_sup" src="./img/elchr.png" style="opacity: 0;">
-				</div>
-				<div class="nft-amt-nums">
-					<div class="nft-amtl-desc">
-						Withdraw <b>F* LP</b>
-					</div>
-					<input class="light-in in-box" placeholder="Enter Amount" style="margin: 0;" id="in_w">
-					<span style="font-family: light_italic;">Staked: </span>
-					<span style="font-family: " id="bal_fa">??????</span>
-				</div>
-			</div>
-			<div style="margin-top: -25px;" align="center">
-				<button class="submit equal-gradient" onclick="withdraw(false)"><span id="claim-offer">Withdraw F*</span></button>
-				<button class="submit equal-gradient btn-max" onclick="withdraw(true)"><span id="claim-offer">Unstake Max</span></button>
-			</div>
-			<br>
-			<span class="nft-amtl" id="nft-tl"></span>
-			<br><br>
-			<div class="hr-nft"></div>
-			<br><br><br>
-			<div class="earn-stats">
-				<div class="nft-amtl-desc">
-					$<span style="font-family: light_italic;" id="bal_tvl">???.???</span>
-					<br><b>T.V.L.</b>
-				</div>
-				<div class="nft-amtl-desc">
-					<span style="font-family: light_italic;" id="bal_apr">???.???</span>%
-					<br><b>A.P.R.</b>
-				</div>
-			</div>
-			<br><br><br>
-			<div class="input-amount-els">
-				<div>
-					<img class="bigthumb" src="https://ftm.guru/icons/equal.png"/>
-					<img class="bigthumb_sup" src="./img/elchr.png" style="opacity: 0;">
-				</div>
-				<div class="nft-amt-nums">
-					<span class="light-in" style="margin: 0;">Claimable Rewards</span>
+	
+	
+		<div class="main-2cards">
+	
+			<div class="mechanism">
+				<h2 class="h2-c2a">Mint F* Tokens</h2>
+				<div align="center">Add your tokens to Liquidity Pool</div>
+				<div style="display:none;font-family:light_italic" align="center" id="mint-recommend">Choose any amounts or ratio!</div>
+				<div class="input-amount">
 					<br>
-					<div class="nft-amtl-desc">
-						<span style="font-family: light_italic;" id="bal_r0">???.???</span>
-						<b>EQUAL</b>
+					<div class="input-amount-els">
+						<div onclick="pairSelectionMenu()">
+							<img class="bigthumb" id="mint-logo-x" src="https://ftm.guru/icons/e3.png"/>
+						</div>
+						<div class="amount-area">
+							<div class="prefill-num">
+								<span id="mint-balance-x">0.000000 available</span>
+							</div>
+							<div class="amount-sold" id="">
+								<input value="" placeholder="Amount" id="mint-inp-x">
+							</div>
+						</div>
 					</div>
-					<span style="font-family: light_italic;">Your Total Earnings</span>
-					<span style="font-family: " id="bal_tr0">??????</span>
+					  <div class="arrow-content" align="center">
+						  <br>
+						  <i>and</i>
+						  <br>
+						  <br>
+					  </div>
+					<div class="input-amount-els">
+						<div onclick="pairSelectionMenu()">
+							<img class="bigthumb" id="mint-logo-y" src="https://ftm.guru/icons/e3.png"/>
+						</div>
+						<div class="amount-area">
+							<div class="prefill-num">
+								<span id="mint-balance-y">0.000000 available</span>
+							</div>
+							<div class="amount-bought" id="">
+								<input value="" placeholder="Amount" id="mint-inp-y">
+							</div>
+						</div>
+					</div>
+					<div style="display:none">
+					  <div class="arrow-content" align="center">
+						  <br>
+						  <br>
+						  <br>
+						  <br>
+						  <i>You will Receive</i>
+						  <br>
+						  <br>
+					  </div>
+					<div class="input-amount-els">
+						<div onclick="pairSelectionMenu()">
+							<img class="bigthumb" id="mint-logo-f" src="https://ftm.guru/icons/e3.png"/>
+						</div>
+						<div class="amount-area">
+							<div class="prefill-num">
+								<span id="mint-balance-f">0.000000 available</span>
+							</div>
+							<div class="amount-bought" id="">
+								<input value="" placeholder="Amount" id="mint-out-f">
+							</div>
+						</div>
+					</div>
+					-->
+					</div>
+				</div>
+				<div style="margin-top: -25px;" align="center">
+					<button class="submit equal-gradient" onclick="mint()"><span id="mint-btn">Mint</span></button>
+					<br><br>
+					<span style="font-family:light_italic">Minting Fees: 0.01%</span>
+					<br><br>
 				</div>
 			</div>
-			<div style="margin-top: -25px;" align="center">
-				<button class="submit equal-gradient" onclick="claim()"><span id="claim-offer">Claim All Rewards</span></button>
+	
+	
+			<div class="mechanism">
+				<h2 class="h2-c2a">Redeem F* Tokens</h2>
+				<div align="center">Withdraw your F* Liquidity Shares</div>
+				<br>
+				<div class="input-amount">
+					<br>
+					<div class="input-amount-els">
+						<div onclick="pairSelectionMenu()">
+							<img class="bigthumb" id="burn-logo-f" src="https://ftm.guru/icons/e3.png"/>
+						</div>
+						<div class="amount-area">
+							<div class="prefill-num">
+								<span id="burn-balance-f">0.000000 available</span>
+							</div>
+							<div class="amount-sold" id="">
+								<input value="" placeholder="Amount" id="burn-inp-f">
+							</div>
+						</div>
+					</div>
+					<div style="display:none">
+					  <div class="arrow-content" align="center">
+						  <br>
+						  <br>
+						  <br>
+						  <br>
+						  <i>You will Receive</i>
+						  <br>
+						  <br>
+					  </div>
+					<div class="input-amount-els">
+						<div onclick="pairSelectionMenu()">
+							<img class="bigthumb" id="burn-logo-x" src="https://ftm.guru/icons/e3.png"/>
+						</div>
+						<div class="amount-area">
+							<div class="prefill-num">
+								<span id="burn-balance-x">0.000000 available</span>
+							</div>
+							<div class="amount-bought" id="">
+								<input value="" placeholder="Amount" id="burn-out-x">
+							</div>
+						</div>
+					</div>
+					  <div class="arrow-content" align="center">
+						  <br>
+						  <i>and</i>
+						  <br>
+						  <br>
+					  </div>
+					<div class="input-amount-els">
+						<div onclick="pairSelectionMenu()">
+							<img class="bigthumb" id="burn-logo-y" src="https://ftm.guru/icons/e3.png"/>
+						</div>
+						<div class="amount-area">
+							<div class="prefill-num">
+								<span id="burn-balance-y">0.000000 available</span>
+							</div>
+							<div class="amount-bought" id="">
+								<input value="" placeholder="Amount" id="burn-out-y">
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+				<div style="margin-top: -25px;" align="center">
+					<button class="submit equal-gradient" onclick="redeem()"><span id="mint-btn">Redeem</span></button>
+					<br><br>
+					<span style="font-family:light_italic">Redeeming Fees: 0.01%</span>
+					<br><br>
+				</div>
 			</div>
-			<br><br>
+	
 		</div>
-		<!--
-		<div style="margin-top: -25px;" align="center">
-			<button class="submit equal-gradient" onclick="sell()"><span id="claim-offer">Select your veNFT</span></button>
-			<br><br>
-		</div>-->
-	</div>
+    </div>
+
+    <!-- Stake/Unstake content -->
+    <div id="StakeUnstake" class="tabcontent">
+		<div class="infobox-light">
+			Fertilizer's unique approach to E3 enables us to Maximize Capital Efficiency, making the best use of each and every single $ in the pool. In turn, this well-shaped Liquidity on E3 generates Trade Fees round the clock to benefit our Liquidity Providers with Best Yields.
+			<br>
+			<br>
+			To further enhance our model, it plugs into <a target="_blank" href="https://equalizer.exchange" class="infobox-light-link">Equalizer</a><span class="infobox-light-highlight">'s Flywheel</span> to Boost the Yields of our LPs. All the generated trade fees are <a target="_blank" href="https://equalizer.exchange/vote" class="infobox-light-link">Bribed</a><span class="infobox-light-highlight"> to veEQUAL</span> voters in exchange of greater EQUAL emissions as Liquidity Rewards.
+			<br>
+			<br>
+		</div>
+		<div class="mechanism">
+			<div class="amount">
+				<br>
+				<!--
+				<p style="">
+					<br>
+					<span id="nft-bal" class="equal-gradient" style="border-radius: 100px;padding: 5px;margin: 5px;position: relative;bottom: 5px;">78,123,456 elCHR</span>
+					<br>
+					<span style="font-family: light;">Available Balance</span>
+				</p>
+				-->
+			</div>
+			<div class="input-amount">
+				<br>
+				<div class="input-amount-els">
+					<div>
+						<img class="bigthumb" src="https://ftm.guru/icons/e3.png" style="border-radius:25%"/>
+						<img class="bigthumb_sub" src="./img/lock.svg" style="opacity: 0;">
+					</div>
+					<div class="nft-amt-nums">
+						<div class="nft-amtl-desc">
+							Stake <b>F* LP</b>
+						</div>
+						<input class="light-in in-box" placeholder="Enter Amount" style="margin: 0;" id="in_d">
+						<!--<button class="btn-max" onclick='$("in_d").value=$("bal_lp").textContent'>Max</button>-->
+						<span style="font-family: light_italic;">Available: </span>
+						<span style="font-family:" id="bal_lp">??????</span>
+					</div>
+				</div>
+				<div style="margin-top: -25px;" align="center">
+					<button class="submit equal-gradient" onclick="deposit(false)"><span id="claim-offer">Stake F*</span></button>
+					<button class="submit equal-gradient btn-max" onclick="deposit(true)"><span id="claim-offer">Deposit Max</span></button>
+				</div>
+				<span class="nft-amtl" id="nft-tl"></span>
+				<br>
+				<br>
+				<div class="input-amount-els">
+					<div>
+						<img class="bigthumb" src="./img/bank.svg"/>
+						<img class="bigthumb_sup" src="./img/elchr.png" style="opacity: 0;">
+					</div>
+					<div class="nft-amt-nums">
+						<div class="nft-amtl-desc">
+							Withdraw <b>F* LP</b>
+						</div>
+						<input class="light-in in-box" placeholder="Enter Amount" style="margin: 0;" id="in_w">
+						<span style="font-family: light_italic;">Staked: </span>
+						<span style="font-family: " id="bal_fa">??????</span>
+					</div>
+				</div>
+				<div style="margin-top: -25px;" align="center">
+					<button class="submit equal-gradient" onclick="withdraw(false)"><span id="claim-offer">Withdraw F*</span></button>
+					<button class="submit equal-gradient btn-max" onclick="withdraw(true)"><span id="claim-offer">Unstake Max</span></button>
+				</div>
+				<br>
+				<span class="nft-amtl" id="nft-tl"></span>
+				<br><br>
+				<div class="hr-nft"></div>
+				<br><br><br>
+				<br><br><br>
+				<div class="input-amount-els">
+					<div>
+						<img class="bigthumb" src="https://ftm.guru/icons/equal.png"/>
+						<img class="bigthumb_sup" src="./img/elchr.png" style="opacity: 0;">
+					</div>
+					<div class="nft-amt-nums">
+						<span class="light-in" style="margin: 0;">Claimable Rewards</span>
+						<br>
+						<div class="nft-amtl-desc">
+							<span style="font-family: light_italic;" id="bal_r0">???.???</span>
+							<b>EQUAL</b>
+						</div>
+						<span style="font-family: light_italic;">Your Total Earnings</span>
+						<span style="font-family: " id="bal_tr0">??????</span>
+					</div>
+				</div>
+				<div style="margin-top: -25px;" align="center">
+					<button class="submit equal-gradient" onclick="claim()"><span id="claim-offer">Claim All Rewards</span></button>
+				</div>
+				<br><br>
+			</div>
+			<!--
+			<div style="margin-top: -25px;" align="center">
+				<button class="submit equal-gradient" onclick="sell()"><span id="claim-offer">Select your veNFT</span></button>
+				<br><br>
+			</div>-->
+		</div>
+    </div>
+
+	
 	<div class="analytics">
 		<a href="./">Mint</a>
 		<a class="equal-gradient-white">Stake</a>
@@ -376,6 +416,29 @@
 		</div>
 	</div>
 <!-- IGNORE ABOVE BLOCK : DEV LOGS -->
+
+
+<script>
+	// JavaScript for the tab functionality
+	function openTab(evt, cityName) {
+		var i, tabcontent, tablinks;
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		}
+		tablinks = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(" active", "");
+		}
+		document.getElementById(cityName).style.display = "block";
+		evt.currentTarget.className += " active";
+	}
+
+	// Set the default tab to Mint/Redeem (you can change it to Stake/Unstake if you prefer)
+	document.addEventListener("DOMContentLoaded", function() {
+		document.getElementsByClassName("tablinks")[0].click();
+	});
+</script>
 
 
 
