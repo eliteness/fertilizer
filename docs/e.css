@@ -41,6 +41,7 @@ small {
 	text-align: center;
 }
 .partnership span {
+	padding: 10px;
 	font-family: light
 }
 
@@ -161,22 +162,16 @@ button.btn-max {
 .nft-amtl-desc {
 	font-family: light;
 	font-size: 1em;
-	margin: 0 25px;
 }
 .nft-amtl-desc b {
 	font-family: regular;
 }
 
 .earn-stats {
+	display: grid;
 	grid-template-columns: auto auto;
 	text-align: center;
 	font-size: 1.25em;
-    padding: 10px;
-    max-width: fit-content;
-    margin: auto auto;
-    border: 1px solid white;
-    border-radius: 15px;
-    margin-bottom: 25px;
 }
 
 #bal_tvl, #bal_apr{
@@ -442,7 +437,6 @@ textarea:focus, input:focus {
 	.nft-amtl-desc {
 		font-family: light_italic;
 		font-size: 2em;
-		display: inline-block;
 	}
 	.nft-amtl-desc b {
 		font-family: regular_italic;
@@ -759,17 +753,13 @@ img.bigthumb {
 
 
 .main-2cards {
-	max-width:1000px;
-	margin:auto auto;
+	display: ;
 }
 
 
 .infobox-light {
-    margin: 25px auto;
-	max-width:1000px;
+	margin:5%;
 	font-family:light;
-	font-family: light;
-    padding: 0px 50px;
 }
 
 .infobox-light-highlight {
@@ -783,6 +773,34 @@ img.bigthumb {
 	text-decoration:none;
 }
 
+.switch-pane {
+	border-botton: 2px solid #00f;
+	display:grid;
+	grid-template-columns: auto auto;
+}
+
+.switch-pane div {
+	margin:auto;
+	font-size:1em;
+	font-family:bold;
+  width: calc(100% - 10px);
+	text-align:center;
+	padding:20px 0 0 0;
+}
+
+.switch-pane-header {
+}
+
+.switch-pane-header-on {
+	border:5px solid aqua;
+	border-bottom: none;
+	background: rgba(0,0,0,0.5);
+}
+
+.panes {
+	background: rgba(0,0,0,0.5);
+	padding: 20px 0 50px 0;
+}
 
 @media(min-width:641px) {
 	.topnav {
@@ -795,6 +813,11 @@ img.bigthumb {
 	}
 
 	.infobox-light {
-		font-size:1.25em;
+		font-size:1em;
 	}
+
+	.switch-pane div {
+		font-size:1.5em;
+	}
+
 }

@@ -278,7 +278,7 @@ function arf(){
 		console.log("refreshing farm stats", Date.now() );
 		try { if( ethers.utils.isAddress(window.ethereum.selectedAddress) ) {gubs();} }
 		catch(e) { console.log('hmm..'); }
-		priceFinder()
+		//priceFinder()
 	}, 15000);
 }
 
@@ -725,4 +725,14 @@ function notice(c) {
 
 async function dexstats() {
 	return;
+}
+
+
+function switchPane(_pid) {
+	let _allPanes = document.getElementsByClassName("panes");
+	let _allSwitches = document.getElementsByClassName("switch-pane-header");
+	for (let i = 0; i < _allPanes.length; i++) { _allPanes[i].style.display = "none"; }
+	for (let i = 0; i < _allSwitches.length; i++) { _allSwitches[i].className="switch-pane-header"; }
+	_allPanes[_pid].style.display = "";
+	_allSwitches[_pid].className = "switch-pane-header switch-pane-header-on";
 }
