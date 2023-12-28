@@ -800,6 +800,7 @@ img.bigthumb {
 .panes {
 	background: rgba(0,0,0,0.5);
 	padding: 20px 0 50px 0;
+	border-bottom:5px solid aqua;
 }
 
 @media(min-width:641px) {
