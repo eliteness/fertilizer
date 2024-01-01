@@ -1,13 +1,6 @@
 function $(_) {return document.getElementById(_);}
 let provider= {};
 let signer= {};
-window.addEventListener('load',async function() {
-	console.log("waitin for 3 secs..");
-	$("cw_m").innerHTML = "Connecting.. Please wait."
-	setTimeout(async () => { await basetrip(); }, 3000);
-	arf();
-}, false);
-
 let STATE = {
 	ts: T_X,
 	tb: T_Y
@@ -28,6 +21,14 @@ CHAINDATA = {
 		logo: "https://ftm.guru/icons/base.svg"
 	}
 }
+window.addEventListener('load',async function() {
+	//PRE
+	pre_stats();
+	console.log("waitin for 3 secs..");
+	$("cw_m").innerHTML = "Connecting.. Please wait."
+	setTimeout(async () => { await basetrip(); await paintBook();}, 3000);
+	arf();
+}, false);
 
 BL = {
 	250:	"0x5a054233e59323e7a58f6b7dae86e6992f1f92e2",
@@ -44,8 +45,6 @@ BUCKETDECIMALS = {
 MAXORDERBOOKSIZE = 2500;
 
 async function basetrip() {
-	//PRE
-	pre_stats();
 	//MAIN
 	if(!(window.ethereum)){$("cw_m").innerHTML = "Wallet wasn't detected!";console.log("Wallet wasn't detected!");notice("<h3>Wallet wasn't detected!</h3>Please make sure that your device and browser have an active Web3 wallet like MetaMask installed and running.<br><br>Visit <a href='https://metamask.io' target='_blank'>metamask.io</a> to install MetaMask wallet.");provider = new ethers.providers.JsonRpcProvider(RPC_URL); dexstats();paintBook();return}
 	else if(!Number(window.ethereum.chainId)==CHAINID){$("cw_m").innerHTML = "Wrong network! Please Switch to "+CHAINID;provider = new ethers.providers.JsonRpcProvider(RPC_URL); dexstats();notice("<h3>Wrong network!</h3>Please Switch to Chain #"+CHAINID+"<btr"+ CHAIN_NAME+ "</u> Blockchain.");}
@@ -279,18 +278,16 @@ function arf(){
 		console.log("refreshing farm stats", Date.now() );
 		try { if( ethers.utils.isAddress(window.ethereum.selectedAddress) ) {gubs();} }
 		catch(e) { console.log('hmm..'); }
-		//priceFinder()
 	}, 15000);
 }
 
 async function gubs() {
-	if(signer={}){console.log("no signer");return}
 	gubs_tx = new ethers.Contract(T_X.address, ["function balanceOf(address) public view returns(uint)"], signer);
 	gubs_ty = new ethers.Contract(T_Y.address, ["function balanceOf(address) public view returns(uint)"], signer);
 	gubs_tf = new ethers.Contract(FTOKEN, ["function balanceOf(address) public view returns(uint)"], signer);
 	lp = new ethers.Contract(WRAP, LPABI, signer);
-	lpt = new ethers.Contract(POOLADDR, PAIRABI, signer);
 	fa = new ethers.Contract(FARM, FARABI, signer);
+	e3lp = new ethers.Contract(POOLADDR, PAIRABI, signer);
 	//fa_o = new ethers.Contract(FARMOLD, FARABI, signer);
 	_BL=new ethers.Contract(BL[CHAINID],[{"inputs": [],"name": "LA","outputs": [{"internalType": "contract ILA","name": "","type": "address"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "contract IP","name": "p","type": "address"}],"name": "bucketList","outputs": [{"internalType": "uint24[]","name": "","type": "uint24[]"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint24[]","name": "inp","type": "uint24[]"}],"name": "cast_24_256","outputs": [{"internalType": "uint256[]","name": "","type": "uint256[]"}],"stateMutability": "pure","type": "function"},{"inputs": [{"internalType": "address","name": "user","type": "address"},{"internalType": "address","name": "_pair","type": "address"}],"name": "poolInfo","outputs": [{"internalType": "uint256[]","name": "bIds","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "liquidities","type": "uint256[]"},{"internalType": "uint256[]","name": "TamountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "TamountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "Tliquidities","type": "uint256[]"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "user","type": "address"},{"internalType": "address","name": "_pair","type": "address"}],"name": "positionOf","outputs": [{"internalType": "uint256[]","name": "bIds","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "liquidities","type": "uint256[]"}],"stateMutability": "view","type": "function"}],provider);
 	bal = await Promise.all([
@@ -304,8 +301,9 @@ async function gubs() {
 		fa.tvl(),
 		fa.aprs(),
 		_BL.poolInfo(FVAULT, POOLADDR),
-		lpt.getReserves(),
+		e3lp.getReserves(),
 		fa.rewardData(TEARNED[0])
+		//fa_o.balanceOf(window.ethereum.selectedAddress)
 	]);
 
 	console.log("gubs.bal_", bal);
@@ -328,6 +326,7 @@ async function gubs() {
 	$("bal_tr0").innerHTML = (bal[6]/1e18).toFixed(8);
 	$("bal_tvl").innerHTML = fornum(bal[7],18);
 	$("bal_apr").innerHTML = fornum(bal[8][0],18);
+
 	$("headline-tvl-usd").innerHTML = "$" + fornum(bal[7],18) + " in Liquidity";
 	$("headline-tvl-rx").innerHTML = fornum(bal[10][0],6);
 	$("headline-tvl-ry").innerHTML = fornum(bal[10][1],6);
@@ -345,17 +344,18 @@ async function pre_stats() {
 	prepro = new ethers.providers.JsonRpcProvider(RPC_URL);
 	lp = new ethers.Contract(WRAP, LPABI, prepro);
 	fa = new ethers.Contract(FARM, FARABI, prepro);
-	lpt = new ethers.Contract(POOLADDR, PAIRABI, prepro);
-	_BL=new ethers.Contract(BL[CHAINID],[{"inputs": [],"name": "LA","outputs": [{"internalType": "contract ILA","name": "","type": "address"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "contract IP","name": "p","type": "address"}],"name": "bucketList","outputs": [{"internalType": "uint24[]","name": "","type": "uint24[]"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint24[]","name": "inp","type": "uint24[]"}],"name": "cast_24_256","outputs": [{"internalType": "uint256[]","name": "","type": "uint256[]"}],"stateMutability": "pure","type": "function"},{"inputs": [{"internalType": "address","name": "user","type": "address"},{"internalType": "address","name": "_pair","type": "address"}],"name": "poolInfo","outputs": [{"internalType": "uint256[]","name": "bIds","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "liquidities","type": "uint256[]"},{"internalType": "uint256[]","name": "TamountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "TamountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "Tliquidities","type": "uint256[]"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "user","type": "address"},{"internalType": "address","name": "_pair","type": "address"}],"name": "positionOf","outputs": [{"internalType": "uint256[]","name": "bIds","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "liquidities","type": "uint256[]"}],"stateMutability": "view","type": "function"}],prepro);
+	e3lp = new ethers.Contract(POOLADDR, PAIRABI, prepro);
+	_BL= new ethers.Contract(BL[CHAINID],[{"inputs": [],"name": "LA","outputs": [{"internalType": "contract ILA","name": "","type": "address"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "contract IP","name": "p","type": "address"}],"name": "bucketList","outputs": [{"internalType": "uint24[]","name": "","type": "uint24[]"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint24[]","name": "inp","type": "uint24[]"}],"name": "cast_24_256","outputs": [{"internalType": "uint256[]","name": "","type": "uint256[]"}],"stateMutability": "pure","type": "function"},{"inputs": [{"internalType": "address","name": "user","type": "address"},{"internalType": "address","name": "_pair","type": "address"}],"name": "poolInfo","outputs": [{"internalType": "uint256[]","name": "bIds","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "liquidities","type": "uint256[]"},{"internalType": "uint256[]","name": "TamountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "TamountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "Tliquidities","type": "uint256[]"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "user","type": "address"},{"internalType": "address","name": "_pair","type": "address"}],"name": "positionOf","outputs": [{"internalType": "uint256[]","name": "bIds","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "liquidities","type": "uint256[]"}],"stateMutability": "view","type": "function"}],prepro);
 	bal = await Promise.all([
 		fa.tvl(),
 		fa.aprs(),
 		_BL.poolInfo(FVAULT, POOLADDR),
-		lpt.getReserves(),
+		e3lp.getReserves(),
 		fa.rewardData(TEARNED[0])
 	]);
 	$("bal_tvl").innerHTML = fornum(bal[0],18);
 	$("bal_apr").innerHTML = fornum(bal[1][0],18);
+
 	$("headline-tvl-usd").innerHTML = "$" + fornum(bal[0],18) + " in Liquidity";
 	$("headline-tvl-rx").innerHTML = fornum(bal[3][0],6);
 	$("headline-tvl-ry").innerHTML = fornum(bal[3][1],6);
@@ -737,6 +737,14 @@ async function claim() {
 	`);
 }
 
+function switchPane(_pid) {
+	let _allPanes = document.getElementsByClassName("panes");
+	let _allSwitches = document.getElementsByClassName("switch-pane-header");
+	for (let i = 0; i < _allPanes.length; i++) { _allPanes[i].style.display = "none"; }
+	for (let i = 0; i < _allSwitches.length; i++) { _allSwitches[i].className="switch-pane-header"; }
+	_allPanes[_pid].style.display = "";
+	_allSwitches[_pid].className = "switch-pane-header switch-pane-header-on";
+}
 
 function notice(c) {
 	window.location = "#note";
@@ -746,14 +754,4 @@ function notice(c) {
 
 async function dexstats() {
 	return;
-}
-
-
-function switchPane(_pid) {
-	let _allPanes = document.getElementsByClassName("panes");
-	let _allSwitches = document.getElementsByClassName("switch-pane-header");
-	for (let i = 0; i < _allPanes.length; i++) { _allPanes[i].style.display = "none"; }
-	for (let i = 0; i < _allSwitches.length; i++) { _allSwitches[i].className="switch-pane-header"; }
-	_allPanes[_pid].style.display = "";
-	_allSwitches[_pid].className = "switch-pane-header switch-pane-header-on";
 }
