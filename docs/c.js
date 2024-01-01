@@ -327,7 +327,7 @@ async function gubs() {
 	$("bal_tvl").innerHTML = fornum(bal[7],18);
 	$("bal_apr").innerHTML = fornum(bal[8][0],18);
 
-	$("headline-tvl-usd").innerHTML = "$" + fornum(bal[10][0]+bal[10][1],6) + " in Liquidity";
+	$("headline-tvl-usd").innerHTML = "$" + fornum(Number(bal[10][0])+Number(bal[10][1]),6) + " in Liquidity";
 	$("headline-tvl-rx").innerHTML = fornum(bal[10][0],6);
 	$("headline-tvl-ry").innerHTML = fornum(bal[10][1],6);
 	$("headline-apr-pc").innerHTML = fornum(bal[8][0],18) + "% APR in Incentives";
@@ -356,7 +356,7 @@ async function pre_stats() {
 	$("bal_tvl").innerHTML = fornum(bal[0],18);
 	$("bal_apr").innerHTML = fornum(bal[1][0],18);
 
-	$("headline-tvl-usd").innerHTML = "$" + fornum(bal[3][0]+bal[3][1],6) + " in Liquidity";
+	$("headline-tvl-usd").innerHTML = "$" + fornum(Number(bal[3][0])+Number(bal[3][1]),6) + " in Liquidity";
 	$("headline-tvl-rx").innerHTML = fornum(bal[3][0],6);
 	$("headline-tvl-ry").innerHTML = fornum(bal[3][1],6);
 	$("headline-apr-pc").innerHTML = fornum(bal[1][0],18) + "% APR in Incentives";
