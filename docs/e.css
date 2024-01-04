@@ -364,6 +364,18 @@ textarea:focus, input:focus {
 	margin-left: 20px;
 }
 
+.mint-prem, .mint-disc {
+	font-family:light ;
+}
+
+.mint-prem {
+	color: #ff0;
+}
+
+.mint-disc {
+	color: #0ff;
+}
+
 .in-box {
 	background: rgba(0,0,0,0.5) !important;;
 	border-radius: 8px;

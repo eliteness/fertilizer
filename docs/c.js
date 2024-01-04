@@ -332,6 +332,9 @@ async function gubs() {
 	$("headline-tvl-ry").innerHTML = fornum(bal[10][1],6);
 	$("headline-apr-pc").innerHTML = fornum(bal[8][0],18) + "% APR in Incentives";
 	$("headline-apr-wk").innerHTML = fornum(bal[11][3]*604800,18) + " per week";
+
+	paintMintPremDisc(bal[9]);
+
 	////////
 	////////
 	return;
@@ -368,6 +371,8 @@ async function pre_stats() {
 	$("burn-logo-y").src= T_Y.logo;
 	///$("mint-logo-f").src= T_X.logo;
 	///$("burn-logo-f").src= T_X.logo;
+
+	paintMintPremDisc(bal[2]);
 
 	////////
 	////////
@@ -754,4 +759,22 @@ function notice(c) {
 
 async function dexstats() {
 	return;
+}
+
+function paintMintPremDisc(_rd) {
+	_bucki=0;
+	for(let i=0;i<_rd[0].length;i++){
+		if(Number(_rd[4][i])>0&&Number(_rd[5][i])>0){
+			_bucki=i;
+		}
+	}
+	_delta = BUCK_1 - _rd[0][_bucki];
+	if(_delta > 4) {
+		$("mint-premdisc-y").innerHTML = `<span class="mint-prem">⚠ ${_delta/100}% Price Divergence!</span>`;
+		$("mint-premdisc-x").innerHTML = `<span class="mint-disc">Recommended Input Asset</span>`;
+	}
+	if(_delta < 4) {
+		$("mint-premdisc-x").innerHTML = `<span class="mint-prem">⚠ ${_delta/100}% Price Divergence!</span>`;
+		$("mint-premdisc-y").innerHTML = `<span class="mint-disc">Recommended Input Asset</span>`;
+	}
 }
