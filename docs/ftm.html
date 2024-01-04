@@ -6,53 +6,9 @@
 	<meta name="keywords" content="E3, Fertilizer, Ftm.guru, Guru Network, Finance, Decentralized Finance, defi, Airdrop, veNFT, Solidly, Equalizer, Fantom Opera, FTM">
 	<title>Fertilizer: The Layer2 A.L.M. for EⅢ DEX</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" href="https://ftm.guru/icons/e3.png"/>
+	<link rel="shortcut icon" href="https://ftm.guru/icons/1f1eb.svg"/>
 	<link rel="stylesheet" href="./e.css"/>
-
-    <!-- Tab style -->
-    <style>
-.tab {
-	justify-content: center;
-    display: flex;
-    max-width: 1000px;
-    margin: auto auto;
-    padding: 0 25px;
-}
-
-.tab button {
-	background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    background-color: #090333;
-	width: 50%;
-    border-radius: 0;
-    border: 1px solid #092e6d;
-    border-bottom: 0;
-}
-
-.tab button:hover {
-    background-color: #090333;
-}
-
-.tab button.active {
-    background-color: #122e5f;
-}
-
-.tabcontent {
-    display: none;
-    border-top: none;
-	background-color: #001337;
-	border: 1px solid #092e6d;
-	padding-bottom:50px;
-	max-width: 1000px;
-    margin: auto auto;
-}
-    </style>
-</head>
+<head>
 <body>
 
 	<div id="note" class="overlay">
@@ -67,7 +23,7 @@
 	<div class="topnav">
 		<div align="left">
 			<a href="https://eliteness.network/e3">
-				<img src="https://ftm.guru/icons/e3.png" style="vertical-align: middle;" height="32px">
+				<img src="https://ftm.guru/icons/1f1eb.svg" style="vertical-align: middle;" height="32px">
 			</a>
 			<a href="https://eliteness.network">
 				eliteness.network
@@ -82,36 +38,48 @@
 
 
 
+
+
 	<div class="partnership">
-		<h1 id="a-addlp"><img class="partnership-icon-main" src="https://ftm.guru/icons/1f1eb.svg"><span>&nbsp;Fertilizer</span></h1>
+		<h1 id="a-addlp"><img class="partnership-icon-main" src="https://ftm.guru/icons/1f1eb.svg"><span>Fertilizer</span></h1>
 		<h2>Automated Liquidity Shape Management for Extreme Capital Efficiency</h2>
-
-		<div class="earn-stats">
-			<div class="nft-amtl-desc">
-				<span>$</span><span style="font-family: light_italic;" id="bal_tvl">???.???</span>
-				<br><b>TVL</b>
+		<div class="headline">
+			<div>
+				<div id="headline-tvl-usd" style="font-family:regular">$--.-- in Liquidity</div>
+				<div class="headline-sub">
+					<hr>
+					<img src="https://ftm.guru/icons/lz.USDC.png"><span id="headline-tvl-rx">--.--</span>
+					<img src="https://ftm.guru/icons/axl.USDC.png"><span id="headline-tvl-ry">--.--</span>
+				</div>
 			</div>
-			<div class="nft-amtl-desc">
-				<span style="font-family: light_italic;" id="bal_apr">???.???</span><span>%</span>
-				<br><b>APR</b>
+			<div>
+				<div id="headline-apr-pc" style="font-family:regular">--.--% APR in Incentives</div>
+				<div class="headline-sub">
+					<hr>
+					<img src="https://ftm.guru/icons/equal.png"><span id="headline-apr-wk">--.-- per week</span>
+				</div>
 			</div>
 		</div>
-
-		    <!-- Tab links -->
-			<div class="tab">
-				<button class="tablinks" onclick="openTab(event, 'MintRedeem')">Mint/Redeem</button>
-				<button class="tablinks" onclick="openTab(event, 'StakeUnstake')">Earn $EQUAL</button>
-			</div>
 	</div>
-	 <!-- Mint/Redeem content -->
-	 <div id="MintRedeem" class="tabcontent">
-		<div class="infobox-light">
-			<span class="infobox-light-highlight">Fertilizer</span> is a novel Automated Liquidity Management Protocol that simplifies your Concentrated Liquidity positions. It creates Liquidity Positions on the <a target="_blank" href="https://eliteness.network/e3" class="infobox-light-link">E3 DEX</a> and keeps your LP "<span class="infobox-light-highlight">In-Range</span>" all the time!
-			<br>
-			<br>
-			Start by Adding Liquidity to get <span class="infobox-light-highlight">F-ftm-2-1</span> (F*) LP tokens. You can deposit any amounts in any ratio, or use one or both tokens! Redeem your LPs at any time to get back the original tokens and with the autcompounded accrued bonuses from our Fees!
-		</div>
+	<br>
+	<br>
+	<br>
+	<br>
 
+
+
+	<div class="switch-pane">
+		<div class="switch-pane-header switch-pane-header-on" id="switch-pane-manage" onclick="switchPane(0)">Manage Liquidity</div>
+		<div class="switch-pane-header" id="switch-pane-farming" onclick="switchPane(1)">Stake LP & Earn</div>
+	</div>
+
+	<div class="panes" id="manage-pane">
+
+		<div class="partnership" style="display:none">
+			<h1><span>Add or Remove LP</span></h1>
+			<h2>Deposit any amounts of axlUSDC & lzUSDC to get F*LP</h2>
+			<br>
+		</div>
 
 		<div class="main-2cards">
 
@@ -123,49 +91,51 @@
 					<br>
 					<div class="input-amount-els">
 						<div onclick="pairSelectionMenu()">
-							<img class="bigthumb" id="mint-logo-x" src="https://ftm.guru/icons/e3.png"/>
+							<img class="bigthumb" id="mint-logo-x" src="https://ftm.guru/icons/1f1eb.svg"/>
 						</div>
 						<div class="amount-area">
-							<div class="prefill-num">
-								<span id="mint-balance-x">0.000000 available</span>
-							</div>
+							<div class="prefill-num" id="mint-premdisc-x"></div>
 							<div class="amount-sold" id="">
 								<input value="" placeholder="Amount" id="mint-inp-x">
 							</div>
+							<div class="prefill-num">
+								<span id="mint-balance-x">0.000000 available</span>
+							</div>
 						</div>
 					</div>
-					  <div class="arrow-content" align="center">
-						  <br>
-						  <i>and</i>
-						  <br>
-						  <br>
-					  </div>
+  					<div class="arrow-content" align="center">
+  						<br>
+  						<i>and</i>
+  						<br>
+  						<br>
+  					</div>
 					<div class="input-amount-els">
 						<div onclick="pairSelectionMenu()">
-							<img class="bigthumb" id="mint-logo-y" src="https://ftm.guru/icons/e3.png"/>
+							<img class="bigthumb" id="mint-logo-y" src="https://ftm.guru/icons/1f1eb.svg"/>
 						</div>
 						<div class="amount-area">
-							<div class="prefill-num">
-								<span id="mint-balance-y">0.000000 available</span>
-							</div>
+							<div class="prefill-num" id="mint-premdisc-y"></div>
 							<div class="amount-bought" id="">
 								<input value="" placeholder="Amount" id="mint-inp-y">
+							</div>
+							<div class="prefill-num">
+								<span id="mint-balance-y">0.000000 available</span>
 							</div>
 						</div>
 					</div>
 					<div style="display:none">
-					  <div class="arrow-content" align="center">
-						  <br>
-						  <br>
-						  <br>
-						  <br>
-						  <i>You will Receive</i>
-						  <br>
-						  <br>
-					  </div>
+  					<div class="arrow-content" align="center">
+  						<br>
+  						<br>
+  						<br>
+  						<br>
+  						<i>You will Receive</i>
+  						<br>
+  						<br>
+  					</div>
 					<div class="input-amount-els">
 						<div onclick="pairSelectionMenu()">
-							<img class="bigthumb" id="mint-logo-f" src="https://ftm.guru/icons/e3.png"/>
+							<img class="bigthumb" id="mint-logo-f" src="https://ftm.guru/icons/1f1eb.svg"/>
 						</div>
 						<div class="amount-area">
 							<div class="prefill-num">
@@ -196,7 +166,7 @@
 					<br>
 					<div class="input-amount-els">
 						<div onclick="pairSelectionMenu()">
-							<img class="bigthumb" id="burn-logo-f" src="https://ftm.guru/icons/e3.png"/>
+							<img class="bigthumb" id="burn-logo-f" src="https://ftm.guru/icons/1f1eb.svg"/>
 						</div>
 						<div class="amount-area">
 							<div class="prefill-num">
@@ -208,18 +178,18 @@
 						</div>
 					</div>
 					<div style="display:none">
-					  <div class="arrow-content" align="center">
-						  <br>
-						  <br>
-						  <br>
-						  <br>
-						  <i>You will Receive</i>
-						  <br>
-						  <br>
-					  </div>
+  					<div class="arrow-content" align="center">
+  						<br>
+  						<br>
+  						<br>
+  						<br>
+  						<i>You will Receive</i>
+  						<br>
+  						<br>
+  					</div>
 					<div class="input-amount-els">
 						<div onclick="pairSelectionMenu()">
-							<img class="bigthumb" id="burn-logo-x" src="https://ftm.guru/icons/e3.png"/>
+							<img class="bigthumb" id="burn-logo-x" src="https://ftm.guru/icons/1f1eb.svg"/>
 						</div>
 						<div class="amount-area">
 							<div class="prefill-num">
@@ -230,15 +200,15 @@
 							</div>
 						</div>
 					</div>
-					  <div class="arrow-content" align="center">
-						  <br>
-						  <i>and</i>
-						  <br>
-						  <br>
-					  </div>
+  					<div class="arrow-content" align="center">
+  						<br>
+  						<i>and</i>
+  						<br>
+  						<br>
+  					</div>
 					<div class="input-amount-els">
 						<div onclick="pairSelectionMenu()">
-							<img class="bigthumb" id="burn-logo-y" src="https://ftm.guru/icons/e3.png"/>
+							<img class="bigthumb" id="burn-logo-y" src="https://ftm.guru/icons/1f1eb.svg"/>
 						</div>
 						<div class="amount-area">
 							<div class="prefill-num">
@@ -260,18 +230,28 @@
 			</div>
 
 		</div>
-    </div>
 
-    <!-- Stake/Unstake content -->
-    <div id="StakeUnstake" class="tabcontent">
 		<div class="infobox-light">
-			Fertilizer's unique approach to E3 enables us to Maximize Capital Efficiency, making the best use of each and every single $ in the pool. In turn, this well-shaped Liquidity on E3 generates Trade Fees round the clock to benefit our Liquidity Providers with Best Yields.
+			<span class="infobox-light-highlight">Fertilizer</span> is a novel Automated Liquidity Management Protocol that simplifies your Concentrated Liquidity positions. It creates Liquidity Positions on the <a target="_blank" href="https://eliteness.network/e3" class="infobox-light-link">E3 DEX</a> and keeps your LP "<span class="infobox-light-highlight">In-Range</span>" all the time!
 			<br>
 			<br>
-			To further enhance our model, it plugs into <a target="_blank" href="https://equalizer.exchange" class="infobox-light-link">Equalizer</a><span class="infobox-light-highlight">'s Flywheel</span> to Boost the Yields of our LPs. All the generated trade fees are <a target="_blank" href="https://equalizer.exchange/vote" class="infobox-light-link">Bribed</a><span class="infobox-light-highlight"> to veEQUAL</span> voters in exchange of greater EQUAL emissions as Liquidity Rewards.
+			Start by Adding Liquidity to get <span class="infobox-light-highlight">F-ftm-2-1</span> (F*) LP tokens. Redeem your LPs at any time to get back the original tokens and with the auto-compounded accrued bonuses from our Mint/Redeem Fees as well as the auto-compounding trade-fees from E3 as rebased rewards into your LP!
 			<br>
+			<br>You can deposit any amounts in any ratio, or use one or both tokens. If prices diverge too much, we recommend minting with the cheaper asset.
+		</div>
+
+	</div>
+
+
+	<div class="panes" id="farming-pane" style="display:none">
+
+		<div class="partnership" style="display:none">
+			<h1><span>Stake_ F* LPs</span></h1>
+			<h2>Stake Your F* LP tokens to start Earning EQUAL</h2>
 			<br>
 		</div>
+
+
 		<div class="mechanism">
 			<div class="amount">
 				<br>
@@ -288,7 +268,7 @@
 				<br>
 				<div class="input-amount-els">
 					<div>
-						<img class="bigthumb" src="https://ftm.guru/icons/e3.png" style="border-radius:25%"/>
+						<img class="bigthumb" src="https://ftm.guru/icons/1f1eb.svg" style="border-radius:25%"/>
 						<img class="bigthumb_sub" src="./img/lock.svg" style="opacity: 0;">
 					</div>
 					<div class="nft-amt-nums">
@@ -331,6 +311,16 @@
 				<br><br>
 				<div class="hr-nft"></div>
 				<br><br><br>
+				<div class="earn-stats">
+					<div class="nft-amtl-desc">
+						$<span style="font-family: light_italic;" id="bal_tvl">???.???</span>
+						<br><b>T.V.L.</b>
+					</div>
+					<div class="nft-amtl-desc">
+						<span style="font-family: light_italic;" id="bal_apr">???.???</span>%
+						<br><b>A.P.R.</b>
+					</div>
+				</div>
 				<br><br><br>
 				<div class="input-amount-els">
 					<div>
@@ -359,10 +349,21 @@
 				<br><br>
 			</div>-->
 		</div>
-    </div>
+
+		<div class="infobox-light">
+			Fertilizer's unique approach to E3 enables us to Maximize Capital Efficiency, making the best use of each and every single $ in the pool. In turn, this well-shaped Liquidity on E3 generates Trade Fees round the clock to benefit our Liquidity Providers with Best Yields.
+			<br>
+			<br>
+			To further enhance our model, it plugs into <a target="_blank" href="https://equalizer.exchange" class="infobox-light-link">Equalizer</a><span class="infobox-light-highlight">'s Flywheel</span> to Boost the Yields of our LPs. All the generated trade fees are <a target="_blank" href="https://equalizer.exchange/vote" class="infobox-light-link">Bribed</a><span class="infobox-light-highlight"> to veEQUAL</span> voters in exchange of greater EQUAL emissions as Liquidity Rewards.
+			<br>
+			<br>
+		</div>
+
+	</div>
 
 
-	<div class="analytics">
+
+	<div class="analytics" style="display:none">
 		<a href="./">Mint</a>
 		<a class="equal-gradient-white">Stake</a>
 		<a href="https://eliteness.network/e3" target="_blank">Trade</a>
@@ -384,7 +385,7 @@
 		<a target="_blank" href="https://discord.gg/QpyfMarNrV"><img src="https://ftm.guru/icons/discord.svg"></a>
 		<a target="_blank" href="https://twitter.com/FTM1337"><img src="https://ftm.guru/icons/twitter.svg"></a>
 		<a target="_blank" href="https://dune.com/e3/fees"><img src="https://ftm.guru/icons/dune.svg"></a>
-		<a target="_blank" href="https://defillama.com/protocol/e3"><img src="https://ftm.guru/icons/defillama.svg"></a>
+		<a target="_blank" href="https://defillama.com/protocol/guru-network-dao"><img src="https://ftm.guru/icons/defillama.svg"></a>
 		<a target="_blank" href="https://coinmarketcap.com/exchanges/e3"><img src="https://ftm.guru/icons/cmc.svg"></a>
 		<a target="_blank" href="https://ftm.guru/docs"><img src="https://ftm.guru/icons/docs.svg"></a>
 	</div>
@@ -415,29 +416,6 @@
 		</div>
 	</div>
 <!-- IGNORE ABOVE BLOCK : DEV LOGS -->
-
-
-<script>
-	// JavaScript for the tab functionality
-	function openTab(evt, cityName) {
-		var i, tabcontent, tablinks;
-		tabcontent = document.getElementsByClassName("tabcontent");
-		for (i = 0; i < tabcontent.length; i++) {
-			tabcontent[i].style.display = "none";
-		}
-		tablinks = document.getElementsByClassName("tablinks");
-		for (i = 0; i < tablinks.length; i++) {
-			tablinks[i].className = tablinks[i].className.replace(" active", "");
-		}
-		document.getElementById(cityName).style.display = "block";
-		evt.currentTarget.className += " active";
-	}
-
-	// Set the default tab to Mint/Redeem (you can change it to Stake/Unstake if you prefer)
-	document.addEventListener("DOMContentLoaded", function() {
-		document.getElementsByClassName("tablinks")[0].click();
-	});
-</script>
 
 
 
@@ -481,7 +459,7 @@
 			FVAULT_v1 = "0xe35c8f873e7e961592a0c7c140a2427bfbfbd136";
 			FVAULT = "0x293e4ee244abbe1362321840a99f956f299bcb3d";
 			FTOKEN = "0x45d68f58e5d9a0b9d3c8bc3625ffd5c697c16c5a";
-			FTOKEN_LOGO = "https://ftm.guru/icons/e3.png";
+			FTOKEN_LOGO = "https://ftm.guru/icons/1f1eb.svg";
 			FTOKEN_NAME = "Fertilizer Fantom - E3 Pool #2, Vault #1";
 			FTOKEN_TICKER = "F-ftm-2-1";
 
@@ -490,7 +468,7 @@
 			BASE = "0x121ce0321de5e245fc49efdbb6444bcb4b42fc6f";
 
 			WRAPNAME = "f-FTM-2-1";
-			WRAPLOGO = "https://ftm.guru/icons/e3.png";
+			WRAPLOGO = "https://ftm.guru/icons/1f1eb.svg";
 			WRAP = "0x45D68F58e5d9a0b9D3c8bC3625ffD5C697C16c5A";
 
 			FARM = "0x2Fc602a40759Bb2D175F6Ae7a9cEb6c4338a51bE";
