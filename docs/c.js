@@ -769,11 +769,11 @@ function paintMintPremDisc(_rd) {
 		}
 	}
 	_delta = BUCK_1 - _rd[0][_bucki];
-	if(_delta > 4) {
+	if(_delta > 2) {
 		$("mint-premdisc-y").innerHTML = `<span class="mint-prem">⚠ ${_delta/100}% Price Divergence!</span>`;
 		$("mint-premdisc-x").innerHTML = `<span class="mint-disc">Recommended Input Asset</span>`;
 	}
-	if(_delta < 4) {
+	if(_delta < -2) {
 		$("mint-premdisc-x").innerHTML = `<span class="mint-prem">⚠ ${_delta/100}% Price Divergence!</span>`;
 		$("mint-premdisc-y").innerHTML = `<span class="mint-disc">Recommended Input Asset</span>`;
 	}
