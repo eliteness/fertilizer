@@ -1,9 +1,9 @@
-@font-face{font-family:bold;src: url(https://ftm.guru/font/bold.ttf);}
-@font-face{ font-family:italic;src: url(https://ftm.guru/font/italic.ttf);}
-@font-face{ font-family:light;src: url(https://ftm.guru/font/light.ttf);}
-@font-face{ font-family:light_italic;src: url(https://ftm.guru/font/light_italic.ttf);}
-@font-face{ font-family:regular;src: url(https://ftm.guru/font/regular.ttf);}
-@font-face{ font-family:regular_italic;src: url(https://ftm.guru/font/regular_italic.ttf);}
+@font-face{font-family:bold;src: url(https://ftm1337.eliteness.network/font/bold.ttf);}
+@font-face{ font-family:italic;src: url(https://ftm1337.eliteness.network/font/italic.ttf);}
+@font-face{ font-family:light;src: url(https://ftm1337.eliteness.network/font/light.ttf);}
+@font-face{ font-family:light_italic;src: url(https://ftm1337.eliteness.network/font/light_italic.ttf);}
+@font-face{ font-family:regular;src: url(https://ftm1337.eliteness.network/font/regular.ttf);}
+@font-face{ font-family:regular_italic;src: url(https://ftm1337.eliteness.network/font/regular_italic.ttf);}
 *{
 	font-family:regular;
 	scroll-behavior: smooth !important;

@@ -12,13 +12,13 @@ let CACHE = {
 
 CHAINDATA = {
 	250 : {
-		logo: "https://ftm.guru/icons/ftm.svg"
+		logo: "https://ftm1337.eliteness.network/icons/ftm.svg"
 	},
 	42161 : {
-		logo: "https://ftm.guru/icons/arb1.svg"
+		logo: "https://ftm1337.eliteness.network/icons/arb1.svg"
 	},
 	42161 : {
-		logo: "https://ftm.guru/icons/base.svg"
+		logo: "https://ftm1337.eliteness.network/icons/base.svg"
 	}
 }
 window.addEventListener('load',async function() {
